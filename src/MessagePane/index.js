@@ -1,31 +1,6 @@
-import React, { Component } from 'react';
-
-const messages = [
-  {
-    id: 1,
-    text: 'hi',
-    author: 'Ben',
-    channel_id: 1
-  },
-  {
-    id: 2,
-    text: 'hi to you too',
-    author: 'Jen',
-    channel_id: 1
-  },
-  {
-    id: 3,
-    text: 'hi from another channel',
-    author: 'Meg',
-    channel_id: 2
-  },
-  {
-    id: 4,
-    text: 'hi to you too from another channel',
-    author: 'Jeff',
-    channel_id: 2
-  }
-];
+import React from 'react';
+import PropTypes from 'prop-types';
+import Form from './Form/form.js';
 
 const Message = ({author, text}) => (
   <div className="Message">
@@ -41,10 +16,21 @@ const List = ({messages}) => {
   </div>
 )};
 
-const MessagePane = () => {
+const MessagePane = ({messages}) => {
   return (
-    <List messages={messages} />
+    <div className="MessagePane">
+      <List messages={messages} />
+      <Form />
+    </div>
   )
+}
+
+MessagePane.defaultProps = {
+  messages: []
+}
+
+MessagePane.propTypes = {
+  messages: PropTypes.array.isRequired
 }
 
 export default MessagePane;
