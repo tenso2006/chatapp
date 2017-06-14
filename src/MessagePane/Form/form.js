@@ -11,6 +11,7 @@ class Form extends Component {
 
     this.send=this.send.bind(this);
     this.updateName=this.updateName.bind(this);
+    this.updateMessage=this.updateMessage.bind(this);
   }
 
   send () {
@@ -20,6 +21,11 @@ class Form extends Component {
   updateName (event) {
     this.setState({name: event.target.value});
   }
+
+  updateMessage(event) {
+    this.setState({message: event.target.value});
+  }
+
   render () {
     return (
       <div className="MessagePane-Form">
@@ -38,6 +44,8 @@ class Form extends Component {
             <textarea
               className="Message"
               placeholder="Your message goes here"
+              onChange={this.updateMessage}
+              value={this.state.message}
             />
           </p>
           <p>
