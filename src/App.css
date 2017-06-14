@@ -1,0 +1,30 @@
+.App {
+  display: flex;
+  flex: 1;
+  padding: 10px;
+  overflow: scroll;
+  flex-shrink: 0;
+  min-height: 300px;
+}
+
+.Message {
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.Message-author {
+  font-weight: bold;
+}
+
+.Message-text {
+  margin-top: 5px;
+}
+
+.MessagePane-List {
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
