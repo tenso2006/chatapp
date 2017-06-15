@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class Form extends Component {
   constructor(props) {
@@ -9,13 +10,20 @@ class Form extends Component {
       message: ''
     };
 
-    this.send=this.send.bind(this);
+    this.onSubmit=this.onSubmit.bind(this);
     this.updateName=this.updateName.bind(this);
     this.updateMessage=this.updateMessage.bind(this);
   }
 
-  send () {
-    console.log("this.name_input.value");
+  onSend () {
+
+  }
+
+  onSubmit () {
+    const {name, message} = this.state;
+    console.log(name, message);
+    this.props.onSend(name, message);
+    this.setState({name:'', message: ''});
   }
 
   updateName (event) {
@@ -49,11 +57,20 @@ class Form extends Component {
             />
           </p>
           <p>
-            <button className="send" onClick={this.send}>Send</button>
+            <button className="send" onClick={this.onSubmit}>Send</button>
           </p>
         </div>
       </div>
     )
   }
 }
+
+Form.defaultProps = {
+  onSend: () => {}
+}
+
+Form.propTypes = {
+  onSend: PropTypes.func.isRequired
+}
+
 export default Form;

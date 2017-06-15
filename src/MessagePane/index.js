@@ -16,11 +16,11 @@ const List = ({messages}) => {
   </div>
 )};
 
-const MessagePane = ({messages}) => {
+const MessagePane = ({messages, onSendMessage}) => {
   return (
     <div className="MessagePane">
       <List messages={messages} />
-      <Form />
+      <Form onSend={onSendMessage} />
     </div>
   )
 }

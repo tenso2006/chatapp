@@ -31,10 +31,32 @@ const messages = [
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages
+    };
+
+    this.onSendMessage = this.onSendMessage.bind(this);
+  }
+
+  onSendMessage (author, text) {
+    const newMessage = {
+      id: this.state.messages[this.state.messages.length - 1].id + 1,
+      author,
+      text,
+      channel_id: 1
+    };
+
+    const messages = [...this.state.messages, newMessage];
+    this.setState({messages});
+  }
+
+
   render() {
     return (
       <div className="App">
-        <MessagePane messages={messages} />
+        <MessagePane messages={this.state.messages} onSendMessage={this.onSendMessage} />
       </div>
     );
   }
