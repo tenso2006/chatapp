@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MessagePane from './MessagePane/index.js';
+import ChannelList from './ChannelList/ChannelList.js';
 
 const messages = [
   {
@@ -56,6 +57,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <ChannelList />
         <MessagePane messages={this.state.messages} onSendMessage={this.onSendMessage} />
       </div>
     );
