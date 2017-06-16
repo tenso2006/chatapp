@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MessagePane from './MessagePane/index.js';
+import ChannelList from './ChannelList/ChannelList.js';
 
 const messages = [
   {
@@ -29,15 +30,24 @@ const messages = [
   }
 ];
 
+const channels = [
+    {id:1, name: 'General Room'},
+    {id:2, name: 'Birthday celebration'},
+    {id:3, name: 'Phayul'}
+];
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages
+      messages,
+      channels,
+      selectedChannelId: channels[0].id
     };
 
     this.onSendMessage = this.onSendMessage.bind(this);
+    this.onChannelSelect = this.onChannelSelect.bind(this);
+    this.filteredMessage = this.filteredMessage.bind(this);
   }
 
   onSendMessage (author, text) {
@@ -45,18 +55,30 @@ class App extends Component {
       id: this.state.messages[this.state.messages.length - 1].id + 1,
       author,
       text,
-      channel_id: 1
+      channel_id: this.state.selectedChannelId
     };
 
     const messages = [...this.state.messages, newMessage];
     this.setState({messages});
   }
 
+  onChannelSelect (id) {
+    this.setState({selectedChannelId:id});
+  }
+
+  filteredMessage () {
+    return this.state.messages.filter(({channel_id}) => channel_id === this.state.selectedChannelId);
+  };
 
   render() {
     return (
       <div className="App">
-        <MessagePane messages={this.state.messages} onSendMessage={this.onSendMessage} />
+        <ChannelList
+          channels={this.state.channels}
+          selectedChannelId={this.state.selectedChannelId}
+          onSelect={this.onChannelSelect}
+        />
+        <MessagePane messages={this.filteredMessage()} onSendMessage={this.onSendMessage} />
       </div>
     );
   }

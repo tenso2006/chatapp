@@ -28,3 +28,29 @@
   padding: 10px;
   margin: 10px;
 }
+
+.ChannelList {
+  width: 200px;
+  border: 1px solid black;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.channelList-item {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid navy;
+  padding: 0 5px;
+}
+
+
+.ChannelList-item-selected {
+  background-color: #00ffd0;
+}
+
+.channelList-item:hover {
+  background-color: #00ffd0;
+  cursor: pointer;
+}
