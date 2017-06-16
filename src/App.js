@@ -55,7 +55,7 @@ class App extends Component {
       id: this.state.messages[this.state.messages.length - 1].id + 1,
       author,
       text,
-      channel_id: 1
+      channel_id: this.state.selectedChannelId
     };
 
     const messages = [...this.state.messages, newMessage];
