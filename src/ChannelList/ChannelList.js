@@ -1,21 +1,23 @@
 import React, {Component} from 'react';
 
-const Channels = [
-    {id:1, name: 'General Room'},
-    {id:2, name: 'Birthday celebration'},
-    {id:3, name: 'Phayul'}
-];
+const selected =2;
 
-const Channel = ({name}) => (
-  <div className="channelList-item">{name}</div>
-);
+const Channel = ({name, isSelected, onClick}) => {
+  console.log(isSelected)
+  const className = isSelected ? 'channelList-item ChannelList-item-selected' : 'channelList-item';
+  return (
+    <div className={className} onClick={onClick}>{name}</div>
+  )
+};
 
-const ChannelList = () => {
+const ChannelList = ({channels, selectedChannelId, onSelect}) => {
   return (
     <div className="ChannelList">
       {
-        Channels.map(({id, name}) => {
-          return <Channel key={id} name={name} />
+        channels.map(({id, name}) => {
+          const is_Selected = selectedChannelId === id
+          const onChannelSelect = () => onSelect(id);
+          return <Channel key={id} name={name} isSelected={is_Selected} onClick={onChannelSelect} />
         })
       }
     </div>
